@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td, th{
+            border: solid black 1px;
+            padding: 3px;
+        }
+        th {
+            background: #b0e0e6;
+        }
+    </style>
+</head>
+<body>
+    <div style="text-align: center; font-size: 26px; margin-bottom: 15px; padding-bottom: 15px">
+        <p>Приложение "Кредит"</p>
+    </div>
+    <div style="width: 100%; text-align: center; display: inline-block">
+        <p style="font-size: 20px" th:text="${Status}"></p>
+        <div style="text-align: center; display: inline-block; border: solid darkgrey;">
+            <div style="border: solid black 1px; display: inline-block; margin: 5px 15px; vertical-align: middle">
+                <div style="font-size: 25px; border-bottom: black solid 1px; margin: 2px 0px 2px 0px; padding: 5px">
+                    <p>Навигация по сайту</p>
+                </div>
+                <div style="display: inline-block; margin: 2px 0px 2px 10px; padding: 5px">
+                    <a href="/AddClientPage" style="background: darkgrey; color: black; border: solid black 1px; display: inline-block; width: 220px; text-decoration: none; border-radius: 5px; padding: 10px;">Добавить клиента</a>
+                </div>
+                <div style="display: inline-block; margin: 2px 0px 2px 10px; padding: 5px">
+                    <a href="/RequestPage" style="background: darkgrey; color: black; border: solid black 1px; display: inline-block; width: 220px; text-decoration: none; border-radius: 5px; padding: 10px;">Сформировать заявку</a>
+                </div>
+                <div style="display: inline-block; margin: 2px 0px 2px 10px; padding: 5px">
+                    <a href="/CreditAgreementPage" style="background: darkgrey; color: black; border: solid black 1px; display: inline-block; width: 220px; text-decoration: none; border-radius: 5px; padding: 10px;">Подписать договор</a>
+                </div>
+                <div style="display: inline-block; margin: 2px 0px 2px 10px; padding: 5px">
+                    <a href="/" style="background: darkgrey; color: black; border: solid black 1px; display: inline-block; width: 220px; text-decoration: none; border-radius: 5px; padding: 10px;">Главная</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div style="display:inline-block; text-align: center; width: 100%">
+        <div style="display: inline-block; text-align: center; vertical-align: middle">
+            <table>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Отчество</th>
+                    <th>Паспортные данные</th>
+                    <th>Семейное положение</th>
+                    <th>Адресс</th>
+                    <th>Номер телефона</th>
+                    <th>Период работы</th>
+                    <th>Должность</th>
+                    <th>Название организации</th>
+                    <th>Одобренная сумма кредита</th>
+                    <th>Дата подписания</th>
+                </tr>
+                <tr th:each="CreditAgreement : ${tableCreditAgreement}">
+                    <td th:text="${CreditAgreement.OneToOneRequest.OneToManyClient.FirstName}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.OneToManyClient.LastName}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.OneToManyClient.Patronymic}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.OneToManyClient.PassportData}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.OneToManyClient.FamilyStatus}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.OneToManyClient.Address}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.OneToManyClient.Number}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.PeriodOfWork}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.Position}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.NameOfTheOrganization}"></td>
+                    <td th:text="${CreditAgreement.OneToOneRequest.ApprovedLoanAmount}"></td>
+                    <td th:text="${CreditAgreement.DateOfSignature}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

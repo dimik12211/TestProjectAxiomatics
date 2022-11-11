@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td, th{
+            border: solid black 1px;
+            padding: 3px;
+        }
+        th {
+            background: #b0e0e6;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%; text-align: center">
+        <div>
+            <p style="font-size: 20px">Выберите нужного клиента</p>
+        </div>
+        <div style="display: inline-block; text-align: center; vertical-align: middle">
+            <table>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Отчество</th>
+                    <th>Паспортные данные</th>
+                    <th>Семейное положение</th>
+                    <th>Адресс</th>
+                    <th>Номер телефона</th>
+                    <th>Период работы</th>
+                    <th>Должность</th>
+                    <th>Название организации</th>
+                    <th>Одобренная сумма кредита</th>
+                </tr>
+                <tr th:each="request : ${tableRequest}">
+                    <td th:text="${request.OneToManyClient.firstName}"></td>
+                    <td th:text="${request.OneToManyClient.lastName}"></td>
+                    <td th:text="${request.OneToManyClient.patronymic}"></td>
+                    <td th:text="${request.OneToManyClient.passportData}"></td>
+                    <td th:text="${request.OneToManyClient.familyStatus}"></td>
+                    <td th:text="${request.OneToManyClient.address}"></td>
+                    <td th:text="${request.OneToManyClient.number}"></td>
+                    <td th:text="${request.PeriodOfWork}"></td>
+                    <td th:text="${request.Position}"></td>
+                    <td th:text="${request.NameOfTheOrganization}"></td>
+                    <td th:text="${request.ApprovedLoanAmount}"></td>
+                    <td>
+                        <form method="post" th:action="@{/RequestPageSearchAndDelete(id=${request.id})}">
+                            <button name="ButtonRow" type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>

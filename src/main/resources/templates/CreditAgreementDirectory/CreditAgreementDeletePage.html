@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        table{
+            border-collapse: collapse;
+        }
+        td, th{
+            border: solid black 1px;
+            padding: 3px;
+        }
+        th {
+            background: #b0e0e6;
+        }
+    </style>
+</head>
+<body>
+    <div style="width: 100%; text-align: center">
+        <div>
+            <p style="font-size: 20px">Выберите нужного клиента</p>
+        </div>
+        <div style="display: inline-block; text-align: center; vertical-align: middle">
+            <table>
+                <tr>
+                    <th>Имя</th>
+                    <th>Фамилия</th>
+                    <th>Отчество</th>
+                    <th>Паспортные данные</th>
+                    <th>Семейное положение</th>
+                    <th>Адресс</th>
+                    <th>Номер телефона</th>
+                    <th>Период работы</th>
+                    <th>Должность</th>
+                    <th>Название организации</th>
+                    <th>Одобренная сумма кредита</th>
+                    <th>Дата подписания</th>
+                </tr>
+                <tr th:each="creditAgreement : ${tableCreditAgreement}">
+                    <td th:text="${creditAgreement.OneToOneRequest.OneToManyClient.FirstName}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.OneToManyClient.LastName}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.OneToManyClient.Patronymic}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.OneToManyClient.PassportData}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.OneToManyClient.FamilyStatus}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.OneToManyClient.Address}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.OneToManyClient.Number}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.PeriodOfWork}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.Position}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.NameOfTheOrganization}"></td>
+                    <td th:text="${creditAgreement.OneToOneRequest.ApprovedLoanAmount}"></td>
+                    <td th:text="${creditAgreement.DateOfSignature}"></td>
+                    <td>
+                        <form method="post" th:action="@{/CreditAgreementDeletePage(id=${creditAgreement.id})}">
+                            <button name="ButtonRow" type="submit">Удалить</button>
+                        </form>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
